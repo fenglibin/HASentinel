@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+		<param name="target" value="System.out" />
+		<param name="encoding" value="UTF-8" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="conversionPattern" value="%d{yyyy-MM-dd HH:mm:ss SSS} [%p] (%F:%L) %c %t %m%n" />
+		</layout>
+	</appender>
+	<appender name="debugDailyLogAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="/data/hasentinel-dashboard/logs/debug.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="utf-8" />
+		<param name="threshold" value="DEBUG" />
+		<param name="datePattern" value="'.'yyyy-MM-dd'.log'" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="conversionPattern" value="%d{yyyy-MM-dd HH:mm:ss SSS} [%p] (%F:%L) %c %t %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="DEBUG" />
+            <param name="LevelMax" value="DEBUG" />
+        </filter>
+	</appender>
+	<appender name="infoDailyLogAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="/data/hasentinel-dashboard/logs/info.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="utf-8" />
+		<param name="threshold" value="INFO" />
+		<param name="datePattern" value="'.'yyyy-MM-dd'.log'" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="conversionPattern" value="%d{yyyy-MM-dd HH:mm:ss SSS} [%p] (%F:%L) %c %t %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="INFO" />
+            <param name="LevelMax" value="INFO" />
+        </filter>
+	</appender>
+	<appender name="warnDailyLogAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="/data/hasentinel-dashboard/logs/warn.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="utf-8" />
+		<param name="threshold" value="WARN" />
+		<param name="datePattern" value="'.'yyyy-MM-dd'.log'" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="conversionPattern" value="%d{yyyy-MM-dd HH:mm:ss SSS} [%p] (%F:%L) %c %t %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="WARN" />
+            <param name="LevelMax" value="WARN" />
+        </filter>
+	</appender>
+	<appender name="errorDailyLogAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="/data/hasentinel-dashboard/logs/error.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="utf-8" />
+		<param name="threshold" value="ERROR" />
+		<param name="datePattern" value="'.'yyyy-MM-dd'.log'" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="conversionPattern" value="%d{yyyy-MM-dd HH:mm:ss SSS} [%p] (%F:%L) %c %t %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="ERROR" />
+            <param name="LevelMax" value="ERROR" />
+        </filter>
+	</appender>
+	<appender name="fatalDailyLogAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="/data/hasentinel-dashboard/logs/fatal.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="utf-8" />
+		<param name="threshold" value="FATAL" />
+		<param name="datePattern" value="'.'yyyy-MM-dd'.log'" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="conversionPattern" value="%d{yyyy-MM-dd HH:mm:ss SSS} [%p] (%F:%L) %c %t %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="FATAL" />
+            <param name="LevelMax" value="FATAL" />
+        </filter>
+	</appender>
+	<logger name="org.apache">
+		<level value="WARN" />
+	</logger>
+	<logger name="org.springframework">
+		<level value="WARN" />
+	</logger>
+	<logger name="com.netflix">
+		<level value="WARN" />
+	</logger>
+	<root>
+		<level value="INFO" />
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="debugDailyLogAppender" />
+		<appender-ref ref="infoDailyLogAppender" />
+		<appender-ref ref="warnDailyLogAppender" />
+		<appender-ref ref="errorDailyLogAppender" />
+		<appender-ref ref="fatalDailyLogAppender" />
+	</root>
+</log4j:configuration>

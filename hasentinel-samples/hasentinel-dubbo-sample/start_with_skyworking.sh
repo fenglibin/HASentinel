@@ -1,0 +1,1 @@
+java -javaagent:/home/fenglibin/data/soft/apache-skywalking-apm-bin/agent/skywalking-agent.jar  -Djava.net.preferIPv4Stack=true -Dcsp.sentinel.api.port=8721 -Dcsp.sentinel.dashboard.server=localhost:8080 -Dproject.name=hasentinel-dubbo-sample -jar target/hasentinel-dubbo-sample-1.0.0-SNAPSHOT.jar

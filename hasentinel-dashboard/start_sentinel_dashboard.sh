@@ -1,0 +1,8 @@
+#应用失联检测参数，当应用失联的时间大于配置的值（单位为毫秒，最小值为300000即5分钟），会自动从控制台中将该应用去掉
+#-Dsentinel.dashboard.autoRemoveMachineMillis=300000
+
+#生产环境启动脚本
+#nohup java -Xms512m -Xmx1024m -Xmn256m -XX:PermSize=128m -Xss256k -XX:+DisableExplicitGC -XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled -XX:+UseCMSCompactAtFullCollection -XX:LargePageSizeInBytes=128m -XX:+UseFastAccessorMethods -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=70 -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true  -Dsentinel.dashboard.autoRemoveMachineMillis=60000 -Dcsp.sentinel.dashboard.server=localhost:20440 -Dproject.name=sentinel-dashboard -jar sentinel-dashboard.jar &
+
+#java -Dserver.port=20440  -Dcsp.sentinel.dashboard.server=localhost:20440 -Dproject.name=sentinel-dashboard -Dsentinel.dashboard.autoRemoveMachineMillis=60000 -jar target/sentinel-dashboard.jar
+java -Dserver.port=20440  -Dcsp.sentinel.dashboard.server=localhost:20440 -Xms1024m -Xmx1024m -Xmn256m -XX:PermSize=128m -Xss256k -XX:+DisableExplicitGC -XX:+UseConcMarkSweepGC -XX:-UseGCOverheadLimit -verbose:gc -Xloggc:/data/applogs/csp/jvm-gc.log -XX:+PrintGCDateStamps -XX:+PrintGCDetails -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/data/applogs/csp/sentinel-dashboare-dump.bin -XX:+CMSParallelRemarkEnabled -XX:+UseCMSCompactAtFullCollection -XX:LargePageSizeInBytes=128m -XX:+UseFastAccessorMethods -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=70 -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true  -Dsentinel.dashboard.autoRemoveMachineMillis=60000 -Dproject.name=sentinel-dashboard -jar target/sentinel-dashboard.jar 

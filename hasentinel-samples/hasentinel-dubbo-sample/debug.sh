@@ -1,0 +1,1 @@
+java -Djava.net.preferIPv4Stack=true -Dcsp.sentinel.api.port=8721 -Dcsp.sentinel.dashboard.server=localhost:8080 -Dproject.name=hasentinel-dubbo-sample -Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8000 -jar target/hasentinel-dubbo-sample-1.0.0-SNAPSHOT.jar

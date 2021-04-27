@@ -1,0 +1,1 @@
+java -Dapollo.autoUpdateInjectedSpringProperties=true -Dapp.id=hasentinel-common-sample -Denv=DEV -Dapollo.meta=http://127.0.0.1:8080 -Dapollo.bootstrap.enabled=true -Dapollo.bootstrap.namespaces=application -jar target/hasentinel-common-sample-1.0.0-SNAPSHOT.jar

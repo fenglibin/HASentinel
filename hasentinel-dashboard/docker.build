@@ -1,0 +1,1 @@
+mvn dockerfile:build

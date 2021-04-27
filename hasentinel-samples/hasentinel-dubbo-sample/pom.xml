@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <groupId>com.eeefff.hasentinel.samples</groupId>
+    <artifactId>hasentinel-dubbo-sample</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    
+
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <spring.version>5.1.7.RELEASE</spring.version>
+        <netty.version>4.1.36.Final</netty.version>
+        <dubbo.version>2.7.3</dubbo.version>
+        
+        <zookeeper.version>3.5.5</zookeeper.version>
+        <curator.version>4.2.0</curator.version>
+        <validation-api.version>2.0.1.Final</validation-api.version>
+        <hibernate-validator.version>6.0.16.Final</hibernate-validator.version>
+        <resteasy.version>3.7.0.Final</resteasy.version>
+        <curator-client.version>4.2.0</curator-client.version>
+        <swagger.version>1.5.22</swagger.version>
+        <tomcat.version>9.0.21</tomcat.version>
+        <servlet.version>4.0.1</servlet.version>
+        <maven.checkstyle.version>3.1.0</maven.checkstyle.version>
+        <apache-rat-plugin.version>0.13</apache-rat-plugin.version>
+        <spring-boot.version>2.1.5.RELEASE</spring-boot.version>
+        <spring-cloud-starter-netflix-hystrix>2.1.1.RELEASE</spring-cloud-starter-netflix-hystrix>
+        <main-class>com.eeefff.hasentinel.demo.spring.boot.provider.ProviderApplication</main-class>
+   		<maven.deploy.version>3.0.0-M1</maven.deploy.version>
+   		<sentinel.version>1.7.1</sentinel.version>
+   		<slf4j.version>1.7.26</slf4j.version>
+   		<hasentinel.version>1.8.1-SNAPSHOT</hasentinel.version>
+    </properties>
+
+    <dependencies>
+    	<dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-framework-bom</artifactId>
+            <version>${spring.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    	<dependency>
+           <!-- Import dependency management from Spring Boot -->
+           <groupId>org.springframework.boot</groupId>
+           <artifactId>spring-boot-dependencies</artifactId>
+           <version>${spring-boot.version}</version>
+           <type>pom</type>
+           <scope>import</scope>
+       </dependency>
+       <dependency>
+		  <groupId>org.springframework.boot</groupId>
+		  <artifactId>spring-boot-starter-actuator</artifactId>
+		  <version>${spring-boot.version}</version>
+		</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <version>${spring-boot.version}</version>
+			 <exclusions>
+               <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>log4j-over-slf4j</artifactId>
+               </exclusion>
+				<exclusion>
+                    <groupId>ch.qos.logback</groupId>
+                   <artifactId>logback-classic</artifactId>
+                </exclusion>
+             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.eeefff.hasentinel</groupId>
+	    	<artifactId>hasentinel-dubbo-spring-boot-starter</artifactId>
+            <version>${hasentinel.version}</version>
+        </dependency>
+        
+        <dependency>
+		    <groupId>org.springframework.cloud</groupId>
+		    <artifactId>spring-cloud-context</artifactId>
+		    <version>2.0.4.RELEASE</version>
+		</dependency>
+        
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>${spring-boot.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+        	<plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
+                <configuration>
+	                 <fork>true</fork>
+	                 <mainClass>${main-class}</mainClass>
+	             </configuration>
+	             <executions>
+	                 <execution>
+	                     <goals>
+	                         <goal>repackage</goal>
+	                     </goals>
+	                 </execution>
+	             </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>${maven.deploy.version}</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+
+            <resource>
+                <directory>src/main/webapp/</directory>
+                <excludes>
+                    <exclude>resources/node_modules/**</exclude>
+                </excludes>
+            </resource>
+        </resources>
+    </build>
+
+</project>
