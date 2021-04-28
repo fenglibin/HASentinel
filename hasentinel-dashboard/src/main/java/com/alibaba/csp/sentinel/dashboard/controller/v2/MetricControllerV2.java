@@ -17,12 +17,10 @@ package com.alibaba.csp.sentinel.dashboard.controller.v2;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -32,22 +30,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.redis.core.ZSetOperations.TypedTuple;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.csp.sentinel.dashboard.datasource.entity.MetricEntity;
-import com.alibaba.csp.sentinel.dashboard.datasource.entity.vo.MetricEntityVO;
 import com.alibaba.csp.sentinel.dashboard.domain.Result;
 import com.alibaba.csp.sentinel.dashboard.domain.vo.MetricVo;
 import com.alibaba.csp.sentinel.dashboard.metric.MetricFetcherV2;
 import com.alibaba.csp.sentinel.dashboard.repository.metric.MetricsHandler;
 import com.alibaba.csp.sentinel.dashboard.repository.metric.MetricsRepository;
-import com.alibaba.csp.sentinel.dashboard.util.MD5Util;
-import com.alibaba.csp.sentinel.dashboard.wrapper.redis.LastResourceRedisKey;
-import com.alibaba.csp.sentinel.dashboard.wrapper.redis.RedisTemplateWrapper;
 import com.alibaba.csp.sentinel.util.StringUtil;
 
 /**
