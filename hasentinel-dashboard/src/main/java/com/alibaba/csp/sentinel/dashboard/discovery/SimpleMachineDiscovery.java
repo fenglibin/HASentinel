@@ -22,9 +22,9 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
-import com.alibaba.csp.sentinel.util.AssertUtil;
-
 import org.springframework.stereotype.Component;
+
+import com.alibaba.csp.sentinel.util.AssertUtil;
 
 /**
  * @author leyou

@@ -2,7 +2,6 @@ package com.alibaba.csp.sentinel.dashboard.datasource.entity.vo;
 
 import javax.validation.constraints.NotNull;
 
-
 import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.Tolerate;

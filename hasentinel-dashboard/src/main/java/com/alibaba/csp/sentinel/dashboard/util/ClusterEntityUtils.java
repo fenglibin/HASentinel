@@ -23,8 +23,6 @@ import java.util.Map;
 import java.util.Set;
 
 import com.alibaba.csp.sentinel.cluster.ClusterStateManager;
-import com.alibaba.csp.sentinel.util.StringUtil;
-
 import com.alibaba.csp.sentinel.dashboard.domain.cluster.ClusterGroupEntity;
 import com.alibaba.csp.sentinel.dashboard.domain.cluster.ConnectionGroupVO;
 import com.alibaba.csp.sentinel.dashboard.domain.cluster.state.AppClusterClientStateWrapVO;
@@ -32,6 +30,7 @@ import com.alibaba.csp.sentinel.dashboard.domain.cluster.state.AppClusterServerS
 import com.alibaba.csp.sentinel.dashboard.domain.cluster.state.ClusterClientStateVO;
 import com.alibaba.csp.sentinel.dashboard.domain.cluster.state.ClusterServerStateVO;
 import com.alibaba.csp.sentinel.dashboard.domain.cluster.state.ClusterUniversalStatePairVO;
+import com.alibaba.csp.sentinel.util.StringUtil;
 
 /**
  * @author Eric Zhao

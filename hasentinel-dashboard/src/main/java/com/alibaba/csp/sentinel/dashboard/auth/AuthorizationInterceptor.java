@@ -15,17 +15,19 @@
  */
 package com.alibaba.csp.sentinel.dashboard.auth;
 
-import com.alibaba.csp.sentinel.dashboard.domain.Result;
-import com.alibaba.fastjson.JSON;
+import java.io.IOException;
+import java.lang.reflect.Method;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.lang.reflect.Method;
+import com.alibaba.csp.sentinel.dashboard.domain.Result;
+import com.alibaba.fastjson.JSON;
 
 /**
  * The web interceptor for privilege-based authorization.

@@ -15,14 +15,14 @@
  */
 package com.alibaba.csp.sentinel.dashboard.datasource.entity.rule;
 
+import java.util.List;
+
 import com.alibaba.csp.sentinel.slots.block.flow.param.ParamFlowClusterConfig;
 import com.alibaba.csp.sentinel.slots.block.flow.param.ParamFlowItem;
 import com.alibaba.csp.sentinel.slots.block.flow.param.ParamFlowRule;
 import com.alibaba.csp.sentinel.util.AssertUtil;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import java.util.List;
 
 /**
  * @author Eric Zhao

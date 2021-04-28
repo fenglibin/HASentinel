@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.alibaba.csp.sentinel.command.vo.NodeVo;
-
 import com.alibaba.csp.sentinel.dashboard.domain.ResourceTreeNode;
 
 /**
