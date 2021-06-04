@@ -27,7 +27,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.alibaba.csp.sentinel.concurrent.NamedThreadFactory;
@@ -45,9 +44,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Component
 public class MetricReporter {
-	// 项目的名称
-	@Value("${project.name:#{null}}")
-	private String projectName;
 	@Autowired
 	private HASentineConfigProperties sentineConfigProperties;
 	@Autowired
@@ -63,8 +59,7 @@ public class MetricReporter {
 	private final static String METRIC_URL_PATH = "metric";
 	static final Charset DEFAULT_CHARSET = Charset.forName(SentinelConfig.charset());
 
-	private ScheduledExecutorService fetchScheduleService = Executors.newScheduledThreadPool(1,
-			new NamedThreadFactory("sentinel-metrics-fetch-task for app:" + projectName));
+	private ScheduledExecutorService fetchScheduleService;
 
 	@PostConstruct
 	public void init() {
@@ -72,6 +67,9 @@ public class MetricReporter {
 			log.warn("当前应用未配置project.name，不会启用Metrix数据上报的任务！");
 			return;
 		}
+		fetchScheduleService = Executors.newScheduledThreadPool(1,
+				new NamedThreadFactory("sentinel-metrics-fetch-task for app:" + sentinelConfig.getProjectName()));
+		
 		IOReactorConfig ioConfig = IOReactorConfig.custom().setConnectTimeout(3000).setSoTimeout(3000)
 				.setIoThreadCount(1).build();
 		httpclient = HttpAsyncClients.custom().setRedirectStrategy(new DefaultRedirectStrategy() {

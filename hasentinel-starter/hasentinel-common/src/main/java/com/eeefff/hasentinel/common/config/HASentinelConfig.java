@@ -56,6 +56,7 @@ public class HASentinelConfig {
 		staticSentineConfigProperties = sentineConfigProperties;
 		if (applicationName != null) {
 			System.setProperty("project.name", applicationName);
+			projectName = applicationName;
 		} else if (projectName != null) {
 			System.setProperty("project.name", projectName);
 		}
