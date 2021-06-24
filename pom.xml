@@ -5,14 +5,14 @@
 
     <groupId>com.eeefff.hasentinel</groupId>
     <artifactId>hasentinel-parent</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.8.1</version>
 
     <modelVersion>4.0.0</modelVersion>
     <modules>
         <module>hasentinel-starter</module>
 	<module>hasentinel-dashboard</module>
         <module>hasentinel-samples</module>
-        <module>sharding-influxdb</module>
+	<module>sharding-influxdb</module>
     </modules>
 
     <packaging>pom</packaging>
