@@ -17,21 +17,17 @@ package com.eeefff.hasentinel.dubbo;
 
 import javax.annotation.PostConstruct;
 
-import org.apache.dubbo.config.ApplicationConfig;
 import org.apache.dubbo.config.ConsumerConfig;
-import org.apache.dubbo.config.ProtocolConfig;
 import org.apache.dubbo.config.ProviderConfig;
-import org.apache.dubbo.config.RegistryConfig;
 import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.alibaba.csp.sentinel.adapter.dubbo.fallback.DubboFallbackRegistry;
-import com.alibaba.csp.sentinel.util.AppNameUtil;
+import com.alibaba.csp.sentinel.adapter.dubbo.config.DubboAdapterGlobalConfig;
 import com.eeefff.hasentinel.common.config.HASentineConfigProperties;
 import com.eeefff.hasentinel.common.config.HASentinelConfig;
+import com.eeefff.hasentinel.dubbo.config.HADubboOriginParser;
 import com.eeefff.hasentinel.dubbo.exception.HADubboConsumerFallback;
 import com.eeefff.hasentinel.dubbo.exception.HADubboProviderFallback;
 
@@ -127,8 +123,9 @@ public class HADubboConfiguration extends HASentinelConfig {
 	@PostConstruct
 	public void doInit() {
 		// 设置Dubbo请求被Block掉的异常处理逻辑
-		DubboFallbackRegistry.setConsumerFallback(new HADubboConsumerFallback());
-		DubboFallbackRegistry.setProviderFallback(new HADubboProviderFallback());
+		DubboAdapterGlobalConfig.setConsumerFallback(new HADubboConsumerFallback());
+		DubboAdapterGlobalConfig.setProviderFallback(new HADubboProviderFallback());
+		DubboAdapterGlobalConfig.setOriginParser(new HADubboOriginParser());
 	}
 
 }

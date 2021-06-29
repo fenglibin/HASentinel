@@ -52,9 +52,14 @@ public class HASentinelWebInterceptor extends SentinelWebInterceptor {
             }
             
             // Parse the request origin using registered origin parser.
+            // 需要自定义获取origin的实现，授权规则才会生效，否则默认授权规则不生效，
+            // 规则实现需继承com.alibaba.csp.sentinel.adapter.spring.webmvc.callback.RequestOriginParser
+            // 实现实例：com.eeefff.hasentinel.demo.spring.webmvc.handler.WhiteAppRequestOriginParser
             String origin = parseOrigin(request);
             String contextName = getContextName(request);
             ContextUtil.enter(contextName, origin);
+            // Sentinel父类中默认没有将请求参数带入，热点参数规则需要传入参数，否则热点参数规则不生效
+            // 热点参数校验方法：com.alibaba.csp.sentinel.slots.block.flow.param.ParamFlowSlot.checkFlow
             Entry entry = SphU.entry(resourceName, ResourceTypeConstants.COMMON_WEB, EntryType.IN,getParamValues(request));
             request.setAttribute(this.config.getRequestAttributeName(), entry);
             return true;

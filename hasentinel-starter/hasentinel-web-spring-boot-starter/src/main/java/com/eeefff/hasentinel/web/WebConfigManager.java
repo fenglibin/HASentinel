@@ -8,7 +8,7 @@ import com.alibaba.csp.sentinel.adapter.spring.webmvc.callback.UrlCleaner;
 
 /**
  * Sentinel
- * Web配置管理骂，用于让应用自定义一些实现，如{@link UrlCleaner}、{@link RequestOriginParser}等
+ * Web配置管理器，用于让应用自定义一些实现，如{@link UrlCleaner}、{@link RequestOriginParser}等
  * 
  * @author fenglibin
  *
