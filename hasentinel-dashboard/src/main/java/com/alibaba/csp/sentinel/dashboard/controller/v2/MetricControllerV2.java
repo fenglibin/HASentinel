@@ -45,6 +45,7 @@ import com.alibaba.csp.sentinel.util.StringUtil;
 
 /**
  * @author leyou
+ * @author fenglibin
  */
 @Controller
 @RequestMapping(value = "/metric", produces = MediaType.APPLICATION_JSON_VALUE)

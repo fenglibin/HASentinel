@@ -39,6 +39,7 @@ import com.alibaba.csp.sentinel.dashboard.repository.metric.MetricsRepository;
 import com.alibaba.csp.sentinel.util.StringUtil;
 
 /**
+ * use MetricControllerV2 instead.
  * @author leyou
  */
 @Deprecated

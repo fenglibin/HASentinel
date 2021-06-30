@@ -49,6 +49,7 @@ import com.alibaba.csp.sentinel.util.StringUtil;
  * Flow rule controller (v2).
  *
  * @author Eric Zhao
+ * @author fenglibin
  * @since 1.4.0
  */
 @RestController
