@@ -25,7 +25,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.csp.sentinel.dashboard.discovery.AppManagement;
-import com.alibaba.csp.sentinel.dashboard.discovery.MachineDiscovery;
 import com.alibaba.csp.sentinel.dashboard.discovery.MachineInfo;
 import com.alibaba.csp.sentinel.dashboard.domain.Result;
 import com.alibaba.csp.sentinel.util.StringUtil;
@@ -44,20 +43,23 @@ public class MachineRegistryController {
 	public Result<?> receiveHeartBeat(String app,
 			@RequestParam(value = "app_type", required = false, defaultValue = "0") Integer appType, Long version,
 			String v, String hostname, String ip, Integer port) {
-		if (app == null) {
-			app = MachineDiscovery.UNKNOWN_APP_NAME;
+		if (StringUtil.isBlank(app) || app.length() > 256) {
+            return Result.ofFail(-1, "invalid appName");
+        }
+        if (StringUtil.isBlank(ip) || ip.length() > 128) {
+            return Result.ofFail(-1, "invalid ip: " + ip);
 		}
-		if (ip == null) {
-			return Result.ofFail(-1, "ip can't be null");
+        if (port == null || port < -1) {
+        	return Result.ofFail(-1, "invalid port");
 		}
-		if (port == null) {
-			return Result.ofFail(-1, "port can't be null");
-		}
-		if (port == -1) {
-			logger.info("Receive heartbeat from " + ip + " but port not set yet");
-			return Result.ofFail(-1, "your port not set yet");
-		}
-		String sentinelVersion = StringUtil.isEmpty(v) ? "unknown" : v;
+        if (hostname != null && hostname.length() > 256) {
+        	return Result.ofFail(-1, "hostname too long");
+        }
+        if (port == -1) {
+        	logger.warn("Receive heartbeat from " + ip + " but port not set yet");
+        	return Result.ofFail(-1, "your port not set yet");
+        }
+        String sentinelVersion = StringUtil.isBlank(v) ? "unknown" : v;
 		version = version == null ? System.currentTimeMillis() : version;
 		try {
 			MachineInfo machineInfo = new MachineInfo();

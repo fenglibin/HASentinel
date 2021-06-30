@@ -52,7 +52,7 @@
    		<maven.deploy.version>3.0.0-M1</maven.deploy.version>
    		<sentinel.version>1.7.1</sentinel.version>
    		<slf4j.version>1.7.26</slf4j.version>
-   		<hasentinel.version>1.8.1-SNAPSHOT</hasentinel.version>
+   		<hasentinel.version>1.8.1</hasentinel.version>
     </properties>
 
     <dependencies>

@@ -20,10 +20,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Component;
-
 import com.alibaba.csp.sentinel.dashboard.util.AES;
 import com.alibaba.csp.sentinel.dashboard.util.CookieUtil;
 
@@ -31,9 +27,6 @@ import com.alibaba.csp.sentinel.dashboard.util.CookieUtil;
  * @author cdfive
  * @since 1.6.0
  */
-@Component
-@Primary
-@ConditionalOnProperty(name = "auth.enabled", matchIfMissing = true)
 public class SimpleWebAuthServiceImpl implements AuthService<HttpServletRequest> {
 
 	public static final String WEB_SESSION_KEY = "session_sentinel_admin";

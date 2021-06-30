@@ -51,6 +51,10 @@ public class HAZookeeperDataSource implements InitFunc {
 
 	}
 
+	/**
+	 * 初使化流控规则、降级规则、授权规则、热点参数规则及系统规则的ZK节点监听数据源
+	 * @throws Exception
+	 */
 	public void initDatasource() throws Exception {
 		HASentineConfigProperties sentineConfigProperties = null;
 		int index = 1;

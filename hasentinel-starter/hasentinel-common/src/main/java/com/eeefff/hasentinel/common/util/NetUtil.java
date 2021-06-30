@@ -50,6 +50,7 @@ public class NetUtil {
 			if (socket.isBound()) {
 				flag = true;
 			}
+			socket.close();
 		} catch (IOException e) {
 
 		}

@@ -28,7 +28,7 @@ public class DefaultBlockExceptionHandler implements BlockExceptionHandler{
         }
 
         PrintWriter out = response.getWriter();
-        out.print("[LD]You request are blocked. Come back later.");
+        out.print("You request are blocked. Come back later.");
         out.flush();
         out.close();
 		

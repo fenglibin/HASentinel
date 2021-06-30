@@ -61,6 +61,9 @@ public class MetricReporter {
 
 	private ScheduledExecutorService fetchScheduleService;
 
+	/**
+	 * 初使化线程池及http连接池
+	 */
 	@PostConstruct
 	public void init() {
 		if (sentinelConfig.getProjectName() == null) {
@@ -68,7 +71,7 @@ public class MetricReporter {
 			return;
 		}
 		fetchScheduleService = Executors.newScheduledThreadPool(1,
-				new NamedThreadFactory("sentinel-metrics-fetch-task for app:" + sentinelConfig.getProjectName()));
+				new NamedThreadFactory("sentinel-metrics-fetch-task for app:" + sentinelConfig.getProjectName(),true));
 		
 		IOReactorConfig ioConfig = IOReactorConfig.custom().setConnectTimeout(3000).setSoTimeout(3000)
 				.setIoThreadCount(1).build();
@@ -118,13 +121,13 @@ public class MetricReporter {
 	private void fetchOnce(long startTime, long endTime) {
 		final String msg = "fetch";
 
+		// 下面URL由com.alibaba.csp.sentinel.command.handler.SendMetricCommandHandler处理并返回结果
 		final String url = "http://127.0.0.1:" + sentineConfigProperties.getApiPort() + "/" + METRIC_URL_PATH
 				+ "?startTime=" + startTime + "&endTime=" + endTime + "&refetch=" + false;
 		log.debug("url is:" + url);
 		final HttpGet httpGet = new HttpGet(url);
 		httpGet.setHeader(HTTP.CONN_DIRECTIVE, HTTP.CONN_CLOSE);
 		httpclient.execute(httpGet, new FutureCallback<HttpResponse>() {
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public void completed(final HttpResponse response) {
 				try {
@@ -134,7 +137,6 @@ public class MetricReporter {
 				}
 			}
 
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public void failed(final Exception ex) {
 				httpGet.abort();
@@ -202,7 +204,6 @@ public class MetricReporter {
 
 		httpclient.execute(httpPost, new FutureCallback<HttpResponse>() {
 
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public void completed(HttpResponse response) {
 				try {

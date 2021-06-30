@@ -43,7 +43,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * metrics数据InfluxDB存储实现
  * 
- * @author cdfive
+ * @author fenglibin
  * @date 2018-10-19
  */
 @Slf4j
@@ -77,7 +77,6 @@ public class InfluxSharingDBMetricsRepository implements MetricsRepository<Metri
 
 		InfluxShardingDBUtils.insert(metric.getApp(), SENTINEL_DATABASE,
 				new InfluxShardingDBUtils.InfluxDBInsertCallback() {
-					@SuppressWarnings("synthetic-access")
 					@Override
 					public void doCallBack(String database, InfluxDBWrapper influxDBWrapper) {
 						if (metric.getId() == null) {
@@ -100,7 +99,6 @@ public class InfluxSharingDBMetricsRepository implements MetricsRepository<Metri
 			final MetricEntity metric = iterator.next();
 			InfluxShardingDBUtils.insert(metric.getApp(), SENTINEL_DATABASE,
 					new InfluxShardingDBUtils.InfluxDBInsertCallback() {
-						@SuppressWarnings("synthetic-access")
 						@Override
 						public void doCallBack(String database, InfluxDBWrapper influxDBWrapper) {
 							if (metric.getId() == null) {

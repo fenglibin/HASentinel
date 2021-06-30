@@ -17,6 +17,8 @@ package com.alibaba.csp.sentinel.dashboard.auth;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
@@ -27,6 +29,11 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class FakeAuthServiceImpl implements AuthService<HttpServletRequest> {
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    public FakeAuthServiceImpl() {
+        this.logger.warn("there is no auth, use {} by implementation {}", AuthService.class, this.getClass());
+    }
 
 	@Override
 	public AuthUser getAuthUser(HttpServletRequest request) {

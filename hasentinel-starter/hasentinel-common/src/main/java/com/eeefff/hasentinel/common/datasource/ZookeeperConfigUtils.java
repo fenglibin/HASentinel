@@ -1,7 +1,9 @@
 package com.eeefff.hasentinel.common.datasource;
 
 /**
- * 获取流控规则在ZK中的路径和授权规则在ZK中的路径
+ * 获取流控规则在ZK中的路径和授权规则在ZK中的路径，如限流规则的ZK路径为:
+ * /SENTINEL-GROUP/FLOW-RULES/${app_name}-flow-rules
+ * 等等
  * 
  * @author fenglibin
  */

@@ -335,5 +335,11 @@ public class QueryController {
 		RedisTemplateWrapper.del(cacheKey);
 		return Result.ofSuccess("清除ＳＱＬ语句:" + q + " 缓存Key为:" + cacheKey + " 的缓存成功！");
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="health", produces ="text/plain")
+	public String health(@NotEmpty String q) {
+		return "OK";
+	}
 
 }

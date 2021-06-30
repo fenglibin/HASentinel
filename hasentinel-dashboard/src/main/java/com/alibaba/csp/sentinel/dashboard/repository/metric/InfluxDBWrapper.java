@@ -18,6 +18,11 @@ public class InfluxDBWrapper {
 			influxDB.enableBatch(BatchOptions.DEFAULTS);
 		}
 	}
+	
+
+	public String getUrl() {
+		return url;
+	}
 
 	public InfluxDB getInfluxDB() {
 		return influxDB;
