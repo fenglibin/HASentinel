@@ -58,3 +58,4 @@ local.properties
 .scala_dependencies
 .worksheet
 target
+logs

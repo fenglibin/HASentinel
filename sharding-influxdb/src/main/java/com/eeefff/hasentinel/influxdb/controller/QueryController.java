@@ -82,9 +82,6 @@ public class QueryController {
 	@Autowired
 	private RedisConfig redisConfig;
 	private CloseableHttpClient httpClient;
-	@Deprecated
-	// 为了兼容原来的配置，暂时保留，后续会在某个阶段删除
-	private static final String LAST_SORTED_RESOURCE_METRIC = "LAST_SORTED_RESOURCE_METRIC";
 	private static final String SENTINEL_SERVER_DB = "sentinel_server";
 
 	@PostConstruct
@@ -110,7 +107,10 @@ public class QueryController {
 	@RequestMapping("query")
 	public Metric queryTopResourceMetric(@NotEmpty String db, @NotEmpty String u, @NotEmpty String p,
 			@NotEmpty String q, String epoch, Integer page, Integer size, HttpServletRequest request) {
-		if (LAST_SORTED_RESOURCE_METRIC.equals(db) || SENTINEL_SERVER_DB.equals(db)) {// 通过Sentinel Server查询按响应时间排序的资源
+		if (SENTINEL_SERVER_DB.equals(db)) {// 通过Sentinel Server查询按响应时间排序的资源
+			if(q.startsWith("SHOW")) {
+				return Metric.getEmptyMetricWithColumns(null);
+			}
 			// SQL解析
 			SqlMeta sqlMeta = SqlParserUtil.parse(q);
 			if (sqlMeta == null) {
