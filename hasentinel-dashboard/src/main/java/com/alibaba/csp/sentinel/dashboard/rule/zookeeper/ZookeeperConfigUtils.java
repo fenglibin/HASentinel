@@ -15,6 +15,7 @@ public final class ZookeeperConfigUtils {
 	public static final String DEGRADE_RULES = "DEGRADE-RULES";
 	public static final String HOT_RULES = "HOT-RULES";
 	public static final String SYSTEM_RULES = "SYSTEM-RULES";
+	public static final String GLOBAL_RULES = "GLOBAL-RULES";
 	// 限流规则的ZK路径后缀
 	private static final String FLOW_RULE_DATA_ID_POSTFIX = "-flow-rules";
 	// 授权规则的ZK路径后缀
@@ -27,6 +28,8 @@ public final class ZookeeperConfigUtils {
 	private static final String HOT_RULE_DATA_ID_POSTFIX = "-hot-rules";
 	// 系统规则的ZK路径后缀
 	private static final String SYSTEM_RULE_DATA_ID_POSTFIX = "-system-rules";
+	// 系统规则的ZK路径后缀
+	private static final String GLOBAL_RULE_DATA_ID = "global-system-rules";
 
 	private ZookeeperConfigUtils() {
 	}
@@ -84,6 +87,15 @@ public final class ZookeeperConfigUtils {
 	public static String getSystemRulesConfigZkPath() {
 		return getConfigRootZkPath() + ZK_PATH_SEPARATOR + SYSTEM_RULES;
 	}
+	
+	/**
+	 * 获取系统规则全局限流配置的ZK路径，如统一设置默认的最高QPS
+	 * 
+	 * @return
+	 */
+	public static String getGlobalRulesConfigZkPath() {
+		return getConfigRootZkPath() + ZK_PATH_SEPARATOR + GLOBAL_RULES;
+	}
 
 	/**
 	 * 获授权控规则在ZK中的路径，如：/groupId/dataId
@@ -135,6 +147,17 @@ public final class ZookeeperConfigUtils {
 	public static String getSystemRuleZkPath(String app) {
 		return getSystemRulesConfigZkPath() + ZK_PATH_SEPARATOR + app + SYSTEM_RULE_DATA_ID_POSTFIX;
 	}
+	
+	/**
+	 * 获取全局规则（如全局接口的默认ＱＰＳ设置）在ZK中的路径，如：/groupId/dataId
+	 *
+	 * @return zk path
+	 */
+	public static String getGlobalRuleZkPath() {
+		return getSystemRulesConfigZkPath() + ZK_PATH_SEPARATOR + GLOBAL_RULE_DATA_ID;
+	}
+	
+	
 
 	/**
 	 * 获取Machine Discovery时调用的ZK PATH，其保存的是当前应用对应的所有服务器信息
