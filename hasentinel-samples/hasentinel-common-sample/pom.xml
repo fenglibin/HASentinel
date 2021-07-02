@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<parent>
-		<groupId>com.eeefff.hasentinel</groupId>
+		<groupId>com.eeeffff.hasentinel</groupId>
 		<artifactId>hasentinel-samples</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
@@ -28,7 +28,7 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.eeefff.hasentinel</groupId>
+			<groupId>com.eeeffff.hasentinel</groupId>
 			<artifactId>hasentinel-common-spring-boot-starter</artifactId>
 			<version>1.8.1</version>
 		</dependency>
@@ -48,7 +48,7 @@
 				<configuration>
 					<fork>true</fork>
 					<!--配置入口 -->
-					<mainClass>com.eeefff.hasentinel.demo.spring.common.CommonDemoApplication</mainClass>
+					<mainClass>com.eeeffff.hasentinel.demo.spring.common.CommonDemoApplication</mainClass>
 				</configuration>
 				<executions>
 					<execution>

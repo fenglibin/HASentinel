@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <groupId>com.eeefff.hasentinel</groupId>
+    <groupId>com.eeeffff.hasentinel</groupId>
     <artifactId>hasentinel-parent</artifactId>
     <version>1.8.1</version>
 
@@ -11,8 +11,8 @@
     <modules>
         <module>hasentinel-starter</module>
 	<module>hasentinel-dashboard</module>
-        <module>hasentinel-samples</module>
 	<module>sharding-influxdb</module>
+	<!--module>hasentinel-samples</module-->
     </modules>
 
     <packaging>pom</packaging>

@@ -3,12 +3,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.eeefff.hasentinel</groupId>
-		<artifactId>hasentinel</artifactId>
-		<version>1.8.1-SNAPSHOT</version>
+		<groupId>com.eeeffff.hasentinel</groupId>
+		<artifactId>hasentinel-parent</artifactId>
+		<version>1.8.1</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
-	<groupId>com.eeefff.hasentinel</groupId>
+	<groupId>com.eeeffff.hasentinel</groupId>
 	<artifactId>sharding-influxdb</artifactId>
 
 	<properties>
@@ -43,7 +43,7 @@
 			<version>${spring.boot.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.eeefff.hasentinel</groupId>
+			<groupId>com.eeeffff.hasentinel</groupId>
 			<artifactId>hasentinel-web-spring-boot-starter</artifactId>
 			<version>${project.version}</version>
 		</dependency>
@@ -111,7 +111,7 @@
 				<configuration>
 					<fork>true</fork>
 					<!--配置入口 -->
-					<mainClass>com.eeefff.hasentinel.influxdb.InfluxdbApplication</mainClass>
+					<mainClass>com.eeeffff.hasentinel.influxdb.InfluxdbApplication</mainClass>
 				</configuration>
 				<executions>
 					<execution>
@@ -146,5 +146,18 @@
 			</plugin>
 		</plugins>
 	</build>
+	<distributionManagement>
+        <repository>
+            <id>ossrh</id>
+            <name>Release</name>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+
+        <snapshotRepository>
+            <id>ossrh</id>
+            <name>SNAPSHOTS</name>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 </project>

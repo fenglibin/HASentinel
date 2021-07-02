@@ -3,20 +3,20 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<parent>
-		<groupId>com.eeefff.hasentinel</groupId>
+		<groupId>com.eeeffff.hasentinel</groupId>
 		<artifactId>hasentinel-starter</artifactId>
 		<version>1.8.1</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<groupId>com.eeefff.hasentinel</groupId>
+	<groupId>com.eeeffff.hasentinel</groupId>
 	<artifactId>hasentinel-common-spring-boot-starter</artifactId>
 
 	<modelVersion>4.0.0</modelVersion>
 
 	<dependencies>
 		<dependency>
-			<groupId>com.eeefff.hasentinel</groupId>
+			<groupId>com.eeeffff.hasentinel</groupId>
 			<artifactId>hasentinel-common</artifactId>
 			<version>${project.version}</version>
 		</dependency>
@@ -39,5 +39,18 @@
 			</plugin>
 		</plugins>
 	</build>
+	<distributionManagement>
+        <repository>
+            <id>ossrh</id>
+            <name>Release</name>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+
+        <snapshotRepository>
+            <id>ossrh</id>
+            <name>SNAPSHOTS</name>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 </project>

@@ -1,1 +1,1 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.eeefff.hasentinel.cloud.AopSentinelConfiguration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.eeeffff.hasentinel.cloud.AopSentinelConfiguration

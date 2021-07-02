@@ -21,7 +21,7 @@ import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
-import com.eeefff.hasentinel.demo.spring.boot.provider.TestBean;
+import com.eeeffff.hasentinel.demo.spring.boot.provider.TestBean;
 
 import lombok.extern.slf4j.Slf4j;
 

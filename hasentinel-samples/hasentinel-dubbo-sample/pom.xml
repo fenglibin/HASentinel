@@ -19,7 +19,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <groupId>com.eeefff.hasentinel.samples</groupId>
+    <groupId>com.eeeffff.hasentinel.samples</groupId>
     <artifactId>hasentinel-dubbo-sample</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
@@ -48,7 +48,7 @@
         <apache-rat-plugin.version>0.13</apache-rat-plugin.version>
         <spring-boot.version>2.1.5.RELEASE</spring-boot.version>
         <spring-cloud-starter-netflix-hystrix>2.1.1.RELEASE</spring-cloud-starter-netflix-hystrix>
-        <main-class>com.eeefff.hasentinel.demo.spring.boot.provider.ProviderApplication</main-class>
+        <main-class>com.eeeffff.hasentinel.demo.spring.boot.provider.ProviderApplication</main-class>
    		<maven.deploy.version>3.0.0-M1</maven.deploy.version>
    		<sentinel.version>1.7.1</sentinel.version>
    		<slf4j.version>1.7.26</slf4j.version>
@@ -97,7 +97,7 @@
             <version>${slf4j.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.eeefff.hasentinel</groupId>
+            <groupId>com.eeeffff.hasentinel</groupId>
 	    	<artifactId>hasentinel-dubbo-spring-boot-starter</artifactId>
             <version>${hasentinel.version}</version>
         </dependency>
