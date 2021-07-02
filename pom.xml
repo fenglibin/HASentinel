@@ -1,8 +1,3 @@
-<!--
-注：
-１、由于该pom工程被子工程所信赖，因而该pom工程通常需要选deploy到远程仓库，否则在编辑子工程时，可能会提示找不到该pom对应的parent工程；
-２、deploy该pom工程时，需要将modules工程模块先注释掉；
--->
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -13,6 +8,7 @@
     <version>1.8.1</version>
 
     <modelVersion>4.0.0</modelVersion>
+
     <distributionManagement>
         <repository>
             <id>ossrh</id>
@@ -37,3 +33,8 @@
     <packaging>pom</packaging>
 
 </project>
+<!--
+注：
+１、由于该pom工程被子工程所信赖，因而该pom工程通常需要选deploy到远程仓库，否则在编辑子工程时，可能会提示找不到该pom对应的parent工程；
+２、deploy该pom工程时，需要将modules工程模块先注释掉；
+-->
