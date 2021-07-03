@@ -30,7 +30,6 @@ import com.alibaba.csp.sentinel.util.StringUtil;
  * metrics数据InfluxDB存储实现
  * 
  * @author cdfive
- * @date 2018-10-19
  */
 @Repository("influxDBMetricsRepository")
 public class InfluxDBMetricsRepository implements MetricsRepository<MetricEntity> {
@@ -48,7 +47,6 @@ public class InfluxDBMetricsRepository implements MetricsRepository<MetricEntity
 		}
 
 		InfluxDBUtils.insert(SENTINEL_DATABASE, new InfluxDBUtils.InfluxDBInsertCallback() {
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public void doCallBack(String database, InfluxDB influxDB) {
 				if (metric.getId() == null) {

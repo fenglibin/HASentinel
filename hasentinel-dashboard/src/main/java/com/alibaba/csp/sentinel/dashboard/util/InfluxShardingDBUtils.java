@@ -16,7 +16,6 @@ import com.alibaba.csp.sentinel.dashboard.repository.metric.InfluxDBWrapper;
 
 /**
  * @author fenglibin
- * @date 2019-12-31
  */
 @Component
 public class InfluxShardingDBUtils {

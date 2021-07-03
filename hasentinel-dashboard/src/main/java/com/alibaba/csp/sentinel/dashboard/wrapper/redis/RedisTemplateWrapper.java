@@ -177,7 +177,7 @@ public class RedisTemplateWrapper {
 	 * 从hashset中获取指定hashKey数据
 	 * 
 	 * @param key
-	 * @param hashKeys
+	 * @param hashKey
 	 */
 	public static Object hGet(String key, Object hashKey) {
 		List<Object> hashKeyList = new ArrayList<Object>();

@@ -98,7 +98,10 @@ public interface MetricsRepository<T> {
 	/**
 	 * 从Redis的zSet中获取按耗时最多的排序的接口
 	 * 
-	 * @param limit
+	 * @param page
+	 * @param size
+	 * @param type
+	 * @param withExpireData
 	 * @return
 	 */
 	default Set<TypedTuple<Object>> getLastResourceSortedMetric(int page, int size, String type, boolean withExpireData) {

@@ -20,8 +20,6 @@ import javax.servlet.http.HttpServletResponse;
  * 
  * ClassName CrossSiteFilter.java 跨域调用处理
  * @author fenglibin
- * @Blog http://xiake6.net
- * @Date 2019年11月28日
  * 
  * Description
  */

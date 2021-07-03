@@ -4,7 +4,6 @@ import org.influxdb.annotation.Measurement;
 
 /**
  * @author cdfive
- * @date 2018-10-19
  */
 @Measurement(name = "sentinel_metric_other")
 public class MetricOtherPO extends MetricPO {

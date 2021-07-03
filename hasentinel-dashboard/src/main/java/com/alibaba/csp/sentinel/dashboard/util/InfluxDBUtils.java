@@ -16,7 +16,6 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author cdfive
- * @date 2018-10-19
  */
 @Component
 public class InfluxDBUtils {

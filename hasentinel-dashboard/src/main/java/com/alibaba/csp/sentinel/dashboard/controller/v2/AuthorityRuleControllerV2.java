@@ -58,7 +58,7 @@ public class AuthorityRuleControllerV2 {
 	 *
 	 * @param request http request
 	 * @param app     app
-	 * @return Result<List < AuthorityRuleEntity>>
+	 * @return <pre>{@code Result<List < AuthorityRuleEntity>>}</pre>
 	 */
 	@GetMapping("/rules")
 	public Result<List<AuthorityRuleEntityV2>> apiQueryAllRulesForApp(HttpServletRequest request,
@@ -112,7 +112,7 @@ public class AuthorityRuleControllerV2 {
 	 *
 	 * @param request request
 	 * @param entity  rule entity
-	 * @return Result<AuthorityRuleEntity>
+	 * @return <pre>{@code Result<AuthorityRuleEntity>}</pre>
 	 */
 	@PostMapping("/rule")
 	public Result<AuthorityRuleEntityV2> apiAddAuthorityRule(HttpServletRequest request,
@@ -143,7 +143,7 @@ public class AuthorityRuleControllerV2 {
 	 * @param request request
 	 * @param id      rule id
 	 * @param entity  rule entity
-	 * @return Result<AuthorityRuleEntity>
+	 * @return <pre>{@code Result<AuthorityRuleEntity>}</pre>
 	 */
 	@PutMapping("/rule/{id}")
 	public Result<AuthorityRuleEntityV2> apiUpdateAuthorityRule(HttpServletRequest request, @PathVariable("id") Long id,
@@ -179,7 +179,7 @@ public class AuthorityRuleControllerV2 {
 	 *
 	 * @param request request
 	 * @param id      rule id
-	 * @return Result<Long>
+	 * @return <pre>{@code Result<Long>}</pre>
 	 */
 	@DeleteMapping("/rule/{id}")
 	public Result<String> apiDeleteRule(HttpServletRequest request, @PathVariable("id") Long id) {

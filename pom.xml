@@ -1,40 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <groupId>com.eeeffff.hasentinel</groupId>
-    <artifactId>hasentinel-parent</artifactId>
-    <version>1.8.1</version>
+	<groupId>com.eeeffff.hasentinel</groupId>
+	<artifactId>hasentinel-parent</artifactId>
+	<version>1.8.1</version>
+	<name>${project.artifactId}</name>
+	<description>The parent project of HASentinel</description>
 
-    <modelVersion>4.0.0</modelVersion>
+	<modelVersion>4.0.0</modelVersion>
+	<url>https://github.com/fenglibin/HASentinel</url>
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	<scm>
+		<url>https://github.com/fenglibin/HASentinel</url>
+		<connection>scm:git:https://github.com/fenglibin/HASentinel.git</connection>
+		<developerConnection>scm:git:https://github.com/fenglibin/HASentinel.git</developerConnection>
+	</scm>
+	<developers>
+		<developer>
+			<name>The HASentinel Project Contributors</name>
+			<email>56553655@163.com</email>
+			<url>https://github.com/fenglibin/HASentinel</url>
+		</developer>
+	</developers>
+	<organization>
+		<name>Fenglibin</name>
+		<url>https://github.com/fenglibin</url>
+	</organization>
+	<issueManagement>
+		<system>github</system>
+		<url>https://github.com/fenglibin/HASentinel/issues</url>
+	</issueManagement>
 
-    <distributionManagement>
-        <repository>
-            <id>ossrh</id>
-            <name>Release</name>
-            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
+	<build>
+                <plugins>
+                        <plugin>
+                                <groupId>org.apache.maven.plugins</groupId>
+                                <artifactId>maven-gpg-plugin</artifactId>
+                                <version>3.0.1</version>
+                                <executions>
+                                        <execution>
+                                                <id>sign-artifacts</id>
+                                                <phase>verify</phase>
+                                                <goals>
+                                                        <goal>sign</goal>
+                                                </goals>
+                                        </execution>
+                                </executions>
+                        </plugin>
+                </plugins>
+        </build>
 
-        <snapshotRepository>
-            <id>ossrh</id>
-            <name>SNAPSHOTS</name>
-            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
+	<distributionManagement>
+		<repository>
+			<id>ossrh</id>
+			<name>Release</name>
+			<url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
 
-    <modules>
-        <module>hasentinel-starter</module>
-	<module>hasentinel-dashboard</module>
-	<module>sharding-influxdb</module>
-	<!--module>hasentinel-samples</module-->
-    </modules>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<name>SNAPSHOTS</name>
+			<url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
 
-    <packaging>pom</packaging>
+	<modules>
+		<module>hasentinel-starter</module>
+		<module>hasentinel-dashboard</module>
+		<module>sharding-influxdb</module>
+		<!--module>hasentinel-samples</module -->
+	</modules>
+
+	<packaging>pom</packaging>
 
 </project>
-<!--
-注：
-１、由于该pom工程被子工程所信赖，因而该pom工程通常需要选deploy到远程仓库，否则在编辑子工程时，可能会提示找不到该pom对应的parent工程；
-２、deploy该pom工程时，需要将modules工程模块先注释掉；
--->
+<!-- 注： １、由于该pom工程被子工程所信赖，因而该pom工程通常需要选deploy到远程仓库，否则在编辑子工程时，可能会提示找不到该pom对应的parent工程； 
+	２、deploy该pom工程时，需要将modules工程模块先注释掉； -->
+
