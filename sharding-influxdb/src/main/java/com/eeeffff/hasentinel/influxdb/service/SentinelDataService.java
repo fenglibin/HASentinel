@@ -26,7 +26,7 @@ public interface SentinelDataService {
 	public String getServiceName();
 
 	/**
-	 * 从SentinelServer查询Metric属性，每个{@link MetricEntity}对象的所有属性都包括
+	 * 从SentinelServer查询Metric属性，每个MetricEntity对象的所有属性都包括
 	 * 
 	 * @param page 当前查询的页数，默认为第一页
 	 * @param size 每页Reousrce的数量，默认为100

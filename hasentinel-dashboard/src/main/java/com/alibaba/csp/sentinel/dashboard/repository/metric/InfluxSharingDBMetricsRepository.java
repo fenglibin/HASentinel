@@ -44,7 +44,6 @@ import lombok.extern.slf4j.Slf4j;
  * metrics数据InfluxDB存储实现
  * 
  * @author fenglibin
- * @date 2018-10-19
  */
 @Slf4j
 @Repository("influxShardingDBMetricsRepository")

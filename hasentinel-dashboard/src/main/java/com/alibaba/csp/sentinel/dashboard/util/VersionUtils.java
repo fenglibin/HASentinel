@@ -31,7 +31,7 @@ public final class VersionUtils {
 	/**
 	 * Parse version of Sentinel from raw string.
 	 *
-	 * @param versionFull version string
+	 * @param verStr version string
 	 * @return parsed {@link SentinelVersion} if the version is valid; empty if
 	 *         there is something wrong with the format
 	 */

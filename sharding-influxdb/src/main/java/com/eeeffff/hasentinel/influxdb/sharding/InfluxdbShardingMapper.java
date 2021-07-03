@@ -18,7 +18,6 @@ import com.eeeffff.hasentinel.influxdb.config.InfluxdbConfigProperties;
 
 /**
  * @author fenglibin
- * @date 2019-12-31
  */
 @Component
 public class InfluxdbShardingMapper {

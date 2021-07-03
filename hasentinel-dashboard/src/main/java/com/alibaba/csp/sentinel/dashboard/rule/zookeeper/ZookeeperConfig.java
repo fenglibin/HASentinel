@@ -50,7 +50,7 @@ public class ZookeeperConfig {
 	/**
 	 * flow rule entity encoder
 	 *
-	 * @return Converter<List < FlowRuleEntity>, String>
+	 * @return <pre>{@code Converter<List < FlowRuleEntity>, String>}</pre>
 	 */
 	@Bean
 	public Converter<List<FlowRuleEntity>, String> flowRuleEntityEncoder() {
@@ -60,7 +60,7 @@ public class ZookeeperConfig {
 	/**
 	 * flow rule entity decoder
 	 *
-	 * @return Converter<String, List < FlowRuleEntity>>
+	 * @return <pre>{@code Converter<String, List < FlowRuleEntity>>}</pre>
 	 */
 	@Bean
 	public Converter<String, List<FlowRuleEntity>> flowRuleEntityDecoder() {
@@ -70,7 +70,7 @@ public class ZookeeperConfig {
 	/**
 	 * authority rule entity encoder
 	 *
-	 * @return Converter<List < AuthorityRuleEntity>, String>
+	 * @return <pre>{@code Converter<List < AuthorityRuleEntity>, String>}</pre>
 	 */
 	@Bean
 	public Converter<List<AuthorityRuleEntity>, String> authorityRuleEntityEncoder() {
@@ -80,7 +80,7 @@ public class ZookeeperConfig {
 	/**
 	 * authority rule entity decoder
 	 *
-	 * @return Converter<String, List < AuthorityRuleEntity>>
+	 * @return <pre>{@code Converter<String, List < AuthorityRuleEntity>>}</pre>
 	 */
 	@Bean
 	public Converter<String, List<AuthorityRuleEntity>> authorityRuleEntityDecoder() {
@@ -90,7 +90,7 @@ public class ZookeeperConfig {
 	/**
 	 * 应用所有服务器的实体编码器
 	 *
-	 * @return Converter<AppInfo, String>
+	 * @return <pre>{@code Converter<AppInfo, String>}</pre>
 	 */
 	@Bean
 	public Converter<AppInfo, String> appMachinesEntityEncoder() {
@@ -100,7 +100,7 @@ public class ZookeeperConfig {
 	/**
 	 * 应用所有服务器的实体解码器
 	 *
-	 * @return Converter<String, AppInfo>
+	 * @return <pre>{@code Converter<String, AppInfo>}</pre>
 	 */
 	@Bean
 	public Converter<String, AppInfo> appMachinesEntityDecoder() {
@@ -110,7 +110,7 @@ public class ZookeeperConfig {
 	/**
 	 * 应用降级实体编码器
 	 *
-	 * @return Converter<DegradeRuleEntity, String>
+	 * @return <pre>{@code Converter<DegradeRuleEntity, String>}</pre>
 	 */
 	@Bean
 	public Converter<DegradeRuleEntity, String> appDegradeEntityEncoder() {
@@ -120,7 +120,7 @@ public class ZookeeperConfig {
 	/**
 	 * 应用降级实体解码器，原始对象为单个的DegradeRuleEntity对象
 	 *
-	 * @return Converter<String, DegradeRuleEntity>
+	 * @return <pre>{@code Converter<String, DegradeRuleEntity>}</pre>
 	 */
 	@Bean
 	public Converter<String, DegradeRuleEntity> appDegradeEntityDecoder() {
@@ -130,7 +130,7 @@ public class ZookeeperConfig {
 	/**
 	 * 应用降级实体编码器
 	 *
-	 * @return Converter<DegradeRuleEntity, String>
+	 * @return <pre>{@code Converter<DegradeRuleEntity, String>}</pre>
 	 */
 	@Bean
 	public Converter<Map<Long, DegradeRuleEntity>, String> appMapDegradeEntityEncoder() {
@@ -140,7 +140,7 @@ public class ZookeeperConfig {
 	/**
 	 * 应用降级实体解码器,
 	 *
-	 * @return Converter<String, Map<Long, DegradeRuleEntity>>
+	 * @return <pre>{@code Converter<String, Map<Long, DegradeRuleEntity>>}</pre>
 	 */
 	@Bean
 	public Converter<String, Map<Long, DegradeRuleEntity>> appMapDegradeEntityDecoder() {
@@ -151,7 +151,7 @@ public class ZookeeperConfig {
 	/**
 	 * 应用热点参数实体编码器
 	 *
-	 * @return Converter<ParamFlowRuleEntity, String>
+	 * @return <pre>{@code Converter<ParamFlowRuleEntity, String>}</pre>
 	 */
 	@Bean
 	public Converter<ParamFlowRuleEntity, String> appParamEntityEncoder() {
@@ -161,7 +161,7 @@ public class ZookeeperConfig {
 	/**
 	 * 应用热点参数实体解码器，原始对象为单个的DegradeRuleEntity对象
 	 *
-	 * @return Converter<String, ParamFlowRuleEntity>
+	 * @return <pre>{@code Converter<String, ParamFlowRuleEntity>}</pre>
 	 */
 	@Bean
 	public Converter<String, ParamFlowRuleEntity> appParamEntityDecoder() {
@@ -171,7 +171,7 @@ public class ZookeeperConfig {
 	/**
 	 * 应用热点参数实体编码器
 	 *
-	 * @return Converter<ParamFlowRuleEntity, String>
+	 * @return <pre>{@code Converter<ParamFlowRuleEntity, String>}</pre>
 	 */
 	@Bean
 	public Converter<Map<Long, ParamFlowRuleEntity>, String> appMapParamEntityEncoder() {
@@ -181,7 +181,7 @@ public class ZookeeperConfig {
 	/**
 	 * 应用热点参数实体解码器,
 	 *
-	 * @return Converter<String, Map<Long, ParamFlowRuleEntity>>
+	 * @return <pre>{@code Converter<String, Map<Long, ParamFlowRuleEntity>>}</pre>
 	 */
 	@Bean
 	public Converter<String, Map<Long, ParamFlowRuleEntity>> appMapParamEntityDecoder() {
@@ -192,7 +192,7 @@ public class ZookeeperConfig {
 	/**
 	 * 应用热点参数实体编码器
 	 *
-	 * @return Converter<SystemRuleEntity, String>
+	 * @return <pre>{@code Converter<SystemRuleEntity, String>}</pre>
 	 */
 	@Bean
 	public Converter<SystemRuleEntity, String> appSystemEntityEncoder() {
@@ -202,7 +202,7 @@ public class ZookeeperConfig {
 	/**
 	 * 应用热点参数实体解码器，原始对象为单个的DegradeRuleEntity对象
 	 *
-	 * @return Converter<String, SystemRuleEntity>
+	 * @return <pre>{@code Converter<String, SystemRuleEntity>}</pre>
 	 */
 	@Bean
 	public Converter<String, SystemRuleEntity> appSystemEntityDecoder() {
@@ -212,7 +212,7 @@ public class ZookeeperConfig {
 	/**
 	 * 应用热点参数实体编码器
 	 *
-	 * @return Converter<ParamFlowRuleEntity, String>
+	 * @return <pre>{@code Converter<ParamFlowRuleEntity, String>}</pre>
 	 */
 	@Bean
 	public Converter<Map<Long, SystemRuleEntity>, String> appMapSystemEntityEncoder() {
@@ -222,7 +222,7 @@ public class ZookeeperConfig {
 	/**
 	 * 应用热点参数实体解码器,
 	 *
-	 * @return Converter<String, Map<Long, ParamFlowRuleEntity>>
+	 * @return <pre>{@code Converter<String, Map<Long, ParamFlowRuleEntity>>}</pre>
 	 */
 	@Bean
 	public Converter<String, Map<Long, SystemRuleEntity>> appMapSystemEntityDecoder() {
