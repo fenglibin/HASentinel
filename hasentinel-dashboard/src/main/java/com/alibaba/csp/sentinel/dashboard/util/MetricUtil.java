@@ -10,7 +10,7 @@ public class MetricUtil {
 	 * @return
 	 */
 	public static boolean checkIsWebRequestByResource(String resource) {
-		if (resource.startsWith("/") || resource.startsWith("http://") || resource.indexOf("/") > 0) {
+		if (resource.startsWith("/") || resource.startsWith("http://") || resource.startsWith("https://") || resource.indexOf("/") > 0) {
 			return true;
 		}
 		return false;

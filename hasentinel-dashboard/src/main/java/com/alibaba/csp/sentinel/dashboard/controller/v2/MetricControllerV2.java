@@ -235,13 +235,6 @@ public class MetricControllerV2 {
 	}
 
 	@ResponseBody
-	@RequestMapping("/setMetricEnableTopTimeReport.json")
-	public Result<?> setMetricEnableTopTimeReport(String metricEnableTopTimeReport) {
-		return Result.ofSuccess(
-				metricsHandler.setMetricEnableTopTimeReport(Boolean.parseBoolean(metricEnableTopTimeReport)));
-	}
-	
-	@ResponseBody
 	@RequestMapping("/setMetricAsyncLogWriteTime.json")
 	public Result<?> setMetricAsyncLogWriteTime(String metricAsyncLogWriteTime) {
 		metricsHandler.setMetricAsyncLogWriteTime(Boolean.parseBoolean(metricAsyncLogWriteTime));

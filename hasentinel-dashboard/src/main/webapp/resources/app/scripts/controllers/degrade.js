@@ -47,7 +47,7 @@ app.controller('DegradeCtl', ['$scope', '$stateParams', 'DegradeService', 'ngDia
     $scope.editRule = function (rule) {
       $scope.currentRule = angular.copy(rule);
       $scope.degradeRuleDialog = {
-        title: '编辑降级规则',
+        title: '编辑熔断规则',
         type: 'edit',
         confirmBtnText: '保存'
       };
@@ -71,7 +71,7 @@ app.controller('DegradeCtl', ['$scope', '$stateParams', 'DegradeService', 'ngDia
         statIntervalMs: 1000,
       };
       $scope.degradeRuleDialog = {
-        title: '新增降级规则',
+        title: '新增熔断规则',
         type: 'add',
         confirmBtnText: '新增'
       };
