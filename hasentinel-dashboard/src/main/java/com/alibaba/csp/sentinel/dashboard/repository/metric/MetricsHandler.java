@@ -32,9 +32,6 @@ public class MetricsHandler {
 	private boolean addMetric = true;
 	// 标识是否允许手动操作
 	private boolean manualWrite = false;
-	// 标识是否开启记录每个接口最近的消耗时间，同时会删除原来的数据，因而会执行删除数据的操作，这个比较耗时，默认为关闭了该功能
-	@Value("${metric.enable.topTimeReport:#{false}}")
-	private boolean metricEnableTopTimeReport;
 	// 标识是否开启打印数据写入Influxdb及Redis的时间到日志文件中
 	@Value("${metric.async.logWriteTime:#{false}}")
 	private boolean metricAsyncLogWriteTime;
@@ -64,7 +61,7 @@ public class MetricsHandler {
 							}
 							metricCount.incrNums();
 							long handStart = System.currentTimeMillis();
-							action.doSave(metricEnableTopTimeReport);
+							action.doSave();
 							metricCount.addTimes(System.currentTimeMillis() - handStart);
 						}
 					} catch (Exception e) {
@@ -124,7 +121,7 @@ public class MetricsHandler {
 			}
 			metricCount.incrNums();
 			long handStart = System.currentTimeMillis();
-			action.doSave(metricEnableTopTimeReport);
+			action.doSave();
 			metricCount.addTimes(System.currentTimeMillis() - handStart);
 		}
 	}
@@ -141,15 +138,6 @@ public class MetricsHandler {
 
 	public boolean setManualWrite(boolean manualWrite) {
 		this.manualWrite = manualWrite;
-		return true;
-	}
-
-	public boolean isMetricEnableTopTimeReport() {
-		return metricEnableTopTimeReport;
-	}
-
-	public boolean setMetricEnableTopTimeReport(boolean metricEnableTopTimeReport) {
-		this.metricEnableTopTimeReport = metricEnableTopTimeReport;
 		return true;
 	}
 
