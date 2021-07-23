@@ -15,3 +15,7 @@ HASentinel的架构图
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0624/154346_bd406341_306225.png "Sentinel限流设计_New (2).png")
 
 文档比较多还没有搬过来，详细架构文档及使用文档参看链接：[https://note.youdao.com/s/ZlizPHkV](https://note.youdao.com/s/ZlizPHkV)
+
+最新的版本为1.8.1：
+
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0705/102252_b7545615_306225.png "2021-07-05 10-21-41屏幕截图.png")
