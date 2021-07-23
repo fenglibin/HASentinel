@@ -165,8 +165,6 @@ public class ZookeeperDegradeRuleStore<T extends DegradeRuleEntity> implements R
 	public List<T> findAllByMachine(MachineInfo machineInfo) {
 		AssertUtil.notNull(machineInfo, "machineInfo cannot be null");
 		AssertUtil.notEmpty(machineInfo.getApp(), "app cannot be empty");
-		AssertUtil.notEmpty(machineInfo.getIp(), "ip cannot be empty");
-		AssertUtil.notEmpty(String.valueOf(machineInfo.getPort()), "port cannot be empty");
 
 		return findAllByApp(machineInfo.getApp());
 	}

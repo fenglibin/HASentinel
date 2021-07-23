@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang.time.DateFormatUtils;
 import org.influxdb.dto.BatchPoints;
 import org.influxdb.dto.Point;
-import org.influxdb.dto.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.ZSetOperations.TypedTuple;
@@ -34,6 +33,7 @@ import com.alibaba.csp.sentinel.dashboard.service.app.AppService;
 import com.alibaba.csp.sentinel.dashboard.util.InfluxShardingDBUtils;
 import com.alibaba.csp.sentinel.dashboard.util.MD5Util;
 import com.alibaba.csp.sentinel.dashboard.util.MetricUtil;
+import com.alibaba.csp.sentinel.dashboard.util.UniqUtil;
 import com.alibaba.csp.sentinel.dashboard.wrapper.redis.LastResourceRedisKey;
 import com.alibaba.csp.sentinel.dashboard.wrapper.redis.RedisTemplateWrapper;
 import com.alibaba.csp.sentinel.util.StringUtil;
@@ -304,50 +304,30 @@ public class InfluxSharingDBMetricsRepository implements MetricsRepository<Metri
 	 */
 	private void doSave(InfluxDBWrapper influxDBWrapper, MetricEntity metric) {
 		MetricSaveAction action = new MetricSaveAction() {
-			@SuppressWarnings("synthetic-access")
-			public void doSave(boolean metricEnableTopTimeReport) {
+			public void doSave() {
 				try {
 					String currentThreadName = Thread.currentThread().getName();
 					String table = getMetricTableByResource(metric.getResource());
 					long start = 0;
-					if (metricEnableTopTimeReport) {
-						// influxdb中使用删除操作，其性能不好，暂时先去除该逻辑
-						StringBuilder delete = new StringBuilder();
-						delete.append("delete from ").append(METRIC_MEASUREMENT_EACH_LAST).append(" where app='")
-								.append(metric.getApp()).append("'").append(" and resource='")
-								.append(metric.getResource()).append("'");
-						start = System.currentTimeMillis();
-						influxDBWrapper.query(new Query(delete.toString()));
-						log.info(currentThreadName + "-数据删除花费时间:" + (System.currentTimeMillis() - start));
-					}
 
 					// 根据资源的请求类型（WEB、DUBBO）将其写入到不同的表中
 					// 将每个应用的每个资源再单独到写入到一张表中，用于出TOP请求报表
 					BatchPoints batchPoints = BatchPoints.builder().point(Point.measurement(table)
-							.time(metric.getTimestamp().getTime(), TimeUnit.MILLISECONDS).tag("app", metric.getApp())
-							.tag("resource", metric.getResource()).addField("appName", metric.getApp())
-							.addField("resourceName", metric.getResource()).addField("id", metric.getId())
+							.time(metric.getTimestamp().getTime(), TimeUnit.MILLISECONDS)
+							.tag("app", metric.getApp())
+							.tag("resource", metric.getResource())
+							.tag("uniqKey", UniqUtil.getUniq32Key())
+							.addField("appName", metric.getApp())
+							.addField("resourceName", metric.getResource())
+							.addField("id", metric.getId())
 							.addField("gmtCreate", metric.getGmtCreate().getTime())
 							.addField("gmtModified", metric.getGmtModified().getTime())
-							.addField("passQps", metric.getPassQps()).addField("successQps", metric.getSuccessQps())
+							.addField("passQps", metric.getPassQps())
+							.addField("successQps", metric.getSuccessQps())
 							.addField("blockQps", metric.getBlockQps())
 							.addField("exceptionQps", metric.getExceptionQps()).addField("rt", metric.getRt())
 							.addField("count", metric.getCount()).addField("resourceCode", metric.getResourceCode())
 							.build()).build();
-					if (metricEnableTopTimeReport) {
-						batchPoints.getPoints().add(Point.measurement(METRIC_MEASUREMENT_EACH_LAST)
-								.time(metric.getTimestamp().getTime(), TimeUnit.MILLISECONDS)
-								.tag("app", metric.getApp()).tag("resource", metric.getResource())
-								.tag("requestType", MetricUtil.getRequestTypeByResource(metric.getResource()))
-								.addField("appName", metric.getApp()).addField("resourceName", metric.getResource())
-								.addField("id", metric.getId()).addField("gmtCreate", metric.getGmtCreate().getTime())
-								.addField("gmtModified", metric.getGmtModified().getTime())
-								.addField("passQps", metric.getPassQps()).addField("successQps", metric.getSuccessQps())
-								.addField("blockQps", metric.getBlockQps())
-								.addField("exceptionQps", metric.getExceptionQps()).addField("rt", metric.getRt())
-								.addField("count", metric.getCount()).addField("resourceCode", metric.getResourceCode())
-								.build());
-					}
 					start = System.currentTimeMillis();
 					influxDBWrapper.write(batchPoints);
 					if (metricsHandler.isMetricAsyncLogWriteTime()) {
@@ -366,7 +346,7 @@ public class InfluxSharingDBMetricsRepository implements MetricsRepository<Metri
 		if (metricAsync) {// 判断是否需要异步处理
 			metricsHandler.addMetric(action);
 		} else {// 如果不需要则同步处理
-			action.doSave(metricsHandler.isMetricEnableTopTimeReport());
+			action.doSave();
 		}
 		appService.addAppToCache(metric);
 	}
