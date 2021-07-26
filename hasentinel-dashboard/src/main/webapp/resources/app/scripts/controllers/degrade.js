@@ -111,11 +111,11 @@ app.controller('DegradeCtl', ['$scope', '$stateParams', 'DegradeService', 'ngDia
     $scope.deleteRule = function (rule) {
       $scope.currentRule = rule;
       $scope.confirmDialog = {
-        title: '删除降级规则',
+        title: '删除熔断规则',
         type: 'delete_rule',
-        attentionTitle: '请确认是否删除如下降级规则',
+        attentionTitle: '请确认是否删除如下熔断规则',
         attention: '资源名: ' + rule.resource +
-            ', 降级模式: ' + parseDegradeMode(rule.grade) + ', 阈值: ' + rule.count,
+            ', 熔断策略: ' + parseDegradeMode(rule.grade) + ', 阈值: ' + rule.count,
         confirmBtnText: '删除',
       };
       confirmDialog = ngDialog.open({
