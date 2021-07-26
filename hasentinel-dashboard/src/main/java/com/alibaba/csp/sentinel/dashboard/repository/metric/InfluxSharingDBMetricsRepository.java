@@ -15,8 +15,11 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang.time.DateFormatUtils;
 import org.influxdb.dto.BatchPoints;
 import org.influxdb.dto.Point;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.data.redis.core.ZSetOperations.TypedTuple;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.CollectionUtils;
@@ -47,7 +50,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Repository("influxShardingDBMetricsRepository")
-public class InfluxSharingDBMetricsRepository implements MetricsRepository<MetricEntity> {
+public class InfluxSharingDBMetricsRepository implements MetricsRepository<MetricEntity>,ApplicationContextAware {
 
 	/** 时间格式 */
 	private static final String DATE_FORMAT_PATTERN = "yyyy-MM-dd HH:mm:ss.SSS";
@@ -67,6 +70,8 @@ public class InfluxSharingDBMetricsRepository implements MetricsRepository<Metri
 	
 	@Autowired
 	private AppService appService;
+	
+	private ApplicationContext applicationContext;
 
 	@Override
 	public void save(MetricEntity metric) {
@@ -334,7 +339,7 @@ public class InfluxSharingDBMetricsRepository implements MetricsRepository<Metri
 						log.info(currentThreadName + "-数据写入Influxdb花费时间:" + (System.currentTimeMillis() - start));
 					}
 					start = System.currentTimeMillis();
-					addLastResourceMetric(metric);
+					applicationContext.publishEvent(metric);
 					if (metricsHandler.isMetricAsyncLogWriteTime()) {
 						log.info(currentThreadName + "-数据写入Redis花费时间:" + (System.currentTimeMillis() - start));
 					}
@@ -349,49 +354,6 @@ public class InfluxSharingDBMetricsRepository implements MetricsRepository<Metri
 			action.doSave();
 		}
 		appService.addAppToCache(metric);
-	}
-
-	/**
-	 * 将Metric加入到Redis中
-	 * 
-	 * @param metric
-	 */
-	public void addLastResourceMetric(MetricEntity metric) {
-		String type = MetricUtil.getRequestTypeByResource(metric.getResource());
-		// 将MetricEntityVO写入到redis的zset中，按耗时多少进行排序
-		RedisTemplateWrapper.zSetAdd(LastResourceRedisKey.LAST_RESOURCE_SORTED_METRIC_KEY.getValue(),
-				MetricEntityVO.builder().app(metric.getApp()).resource(metric.getResource()).build(),
-				metric.getSuccessQps() > 0 ? metric.getRt() / metric.getSuccessQps() : metric.getRt());
-		RedisTemplateWrapper.zSetAdd(LastResourceRedisKey.LAST_RESOURCE_SORTED_METRIC_KEY_NOEXPIRE.getValue(),
-				MetricEntityVO.builder().app(metric.getApp()).resource(metric.getResource()).build(),
-				metric.getSuccessQps() > 0 ? metric.getRt() / metric.getSuccessQps() : metric.getRt());
-		if (MetricType.WEB.name().equals(type)) {
-			RedisTemplateWrapper.zSetAdd(LastResourceRedisKey.LAST_RESOURCE_SORTED_METRIC_KEY_WEB.getValue(),
-					MetricEntityVO.builder().app(metric.getApp()).resource(metric.getResource()).build(),
-					metric.getSuccessQps() > 0 ? metric.getRt() / metric.getSuccessQps() : metric.getRt());
-			RedisTemplateWrapper.zSetAdd(LastResourceRedisKey.LAST_RESOURCE_SORTED_METRIC_KEY_WEB_NOEXPIRE.getValue(),
-					MetricEntityVO.builder().app(metric.getApp()).resource(metric.getResource()).build(),
-					metric.getSuccessQps() > 0 ? metric.getRt() / metric.getSuccessQps() : metric.getRt());
-		} else if (MetricType.DUBBO.name().equals(type)) {
-			RedisTemplateWrapper.zSetAdd(LastResourceRedisKey.LAST_RESOURCE_SORTED_METRIC_KEY_DUBBO.getValue(),
-					MetricEntityVO.builder().app(metric.getApp()).resource(metric.getResource()).build(),
-					metric.getSuccessQps() > 0 ? metric.getRt() / metric.getSuccessQps() : metric.getRt());
-			RedisTemplateWrapper.zSetAdd(LastResourceRedisKey.LAST_RESOURCE_SORTED_METRIC_KEY_DUBBO_NOEXPIRE.getValue(),
-					MetricEntityVO.builder().app(metric.getApp()).resource(metric.getResource()).build(),
-					metric.getSuccessQps() > 0 ? metric.getRt() / metric.getSuccessQps() : metric.getRt());
-		} else if (MetricType.OTHER.name().equals(type)) {
-			RedisTemplateWrapper.zSetAdd(LastResourceRedisKey.LAST_RESOURCE_SORTED_METRIC_KEY_OTHER.getValue(),
-					MetricEntityVO.builder().app(metric.getApp()).resource(metric.getResource()).build(),
-					metric.getSuccessQps() > 0 ? metric.getRt() / metric.getSuccessQps() : metric.getRt());
-			RedisTemplateWrapper.zSetAdd(LastResourceRedisKey.LAST_RESOURCE_SORTED_METRIC_KEY_OTHER_NOEXPIRE.getValue(),
-					MetricEntityVO.builder().app(metric.getApp()).resource(metric.getResource()).build(),
-					metric.getSuccessQps() > 0 ? metric.getRt() / metric.getSuccessQps() : metric.getRt());
-		}
-		// 将每一份MetricEntiry都放入到HashSet中，以app+resource为Key，相同的MetricEntity为覆盖原来已经存在的
-		RedisTemplateWrapper.hSetMetric(LastResourceRedisKey.LAST_RESOURCE_ALL_METRIC_KEY.getValue(),
-				MD5Util.md5Of32(metric.getApp() + metric.getResource()), metric);
-		RedisTemplateWrapper.hSetMetric(LastResourceRedisKey.LAST_RESOURCE_ALL_METRIC_KEY_NOEXPIRE.getValue(),
-				MD5Util.md5Of32(metric.getApp() + metric.getResource()), metric);
 	}
 
 	@Override
@@ -549,5 +511,10 @@ public class InfluxSharingDBMetricsRepository implements MetricsRepository<Metri
 			RedisTemplateWrapper.zSetDel(LastResourceRedisKey.LAST_RESOURCE_SORTED_METRIC_KEY_DUBBO.getValue(), values);
 			RedisTemplateWrapper.zSetDel(LastResourceRedisKey.LAST_RESOURCE_SORTED_METRIC_KEY_OTHER.getValue(), values);
 		}
+	}
+
+	@Override
+	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+		this.applicationContext = applicationContext;
 	}
 }
