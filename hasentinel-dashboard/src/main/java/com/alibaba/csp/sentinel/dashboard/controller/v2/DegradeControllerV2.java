@@ -68,19 +68,10 @@ public class DegradeControllerV2 {
 		if (StringUtil.isEmpty(app)) {
 			return Result.ofFail(-1, "app can't be null or empty");
 		}
-		if (StringUtil.isEmpty(ip)) {
-			return Result.ofFail(-1, "ip can't be null or empty");
-		}
-		if (port == null) {
-			return Result.ofFail(-1, "port can't be null");
-		}
 		try {
 			List<DegradeRuleEntity> rules = null;
-			if (port == -1) {// 查询当前应用全部的规则
-				rules = repository.findAllByApp(app);
-			} else {// 查询当前应用指定IP及端口上的规则
-				rules = repository.findAllByMachine(MachineInfo.of(app, ip, port));
-			}
+			// 根据应用查询规则
+			rules = repository.findAllByApp(app);
 			final List<DegradeRuleEntityV2> list = new ArrayList<DegradeRuleEntityV2>();
 			if (rules != null && rules.size() > 0) {
 				rules.forEach(r -> {
@@ -195,12 +186,6 @@ public class DegradeControllerV2 {
 	private <R> Result<R> checkEntityInternal(DegradeRuleEntity entity) {
 		if (StringUtil.isBlank(entity.getApp())) {
 			return Result.ofFail(-1, "app can't be blank");
-		}
-		if (StringUtil.isBlank(entity.getIp())) {
-			return Result.ofFail(-1, "ip can't be null or empty");
-		}
-		if (entity.getPort() == null || entity.getPort() <= 0) {
-			return Result.ofFail(-1, "invalid port: " + entity.getPort());
 		}
 		if (StringUtil.isBlank(entity.getLimitApp())) {
 			return Result.ofFail(-1, "limitApp can't be null or empty");

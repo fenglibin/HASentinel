@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>com.eeeffff.hasentinel</groupId>
 		<artifactId>hasentinel-parent</artifactId>
-		<version>1.8.1</version>
+		<version>1.8.2</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<groupId>com.eeeffff.hasentinel</groupId>
@@ -20,7 +20,6 @@
 		<junit.version>4.12</junit.version>
 		<mockito-core.version>2.21.0</mockito-core.version>
 		<ant-contrib.version>1.0b3</ant-contrib.version>
-		<ant-nodeps.version>1.8.1</ant-nodeps.version>
 		<maven-resources-plugin.version>2.5</maven-resources-plugin.version>
 		<jdk.version>1.8</jdk.version>
 		<ENCODEING>UTF-8</ENCODEING>
