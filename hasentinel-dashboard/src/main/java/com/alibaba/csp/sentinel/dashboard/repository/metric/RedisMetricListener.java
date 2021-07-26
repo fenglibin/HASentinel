@@ -1,6 +1,7 @@
 package com.alibaba.csp.sentinel.dashboard.repository.metric;
 
 import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import com.alibaba.csp.sentinel.dashboard.datasource.entity.MetricEntity;
@@ -29,6 +30,7 @@ public class RedisMetricListener {
 	 * 
 	 * @param metric
 	 */
+	@Async
 	@EventListener
 	public void addLastResourceMetric(MetricEntity metric) {
 		log.info("将Metric写入到Redis，更新指定Endpoint最后一次的访问时间.");
