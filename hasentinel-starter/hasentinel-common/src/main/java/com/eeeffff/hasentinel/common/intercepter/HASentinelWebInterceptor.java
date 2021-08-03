@@ -30,7 +30,7 @@ public class HASentinelWebInterceptor extends SentinelWebInterceptor {
 		} else {
 			this.config = config;
 		}
-
+		config.setHttpMethodSpecify(true);
 	}
 
 	public HASentinelWebInterceptor() {

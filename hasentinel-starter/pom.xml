@@ -35,6 +35,7 @@
 		<module>hasentinel-web-spring-boot-starter</module>
 		<module>hasentinel-dubbo-spring-boot-starter</module>
 		<module>hasentinel-web-spring-cloud-starter</module>
+		<module>hasentinel-spring-cloud-gateway-starter</module>
 	</modules>
 
 	<packaging>pom</packaging>
